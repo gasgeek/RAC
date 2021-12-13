@@ -6,22 +6,14 @@ public class Main {
 
         Input input = new Input();
         input.getInput();
-        input.getInput1();
-        input.getInput3();
-        input.getOperation();
+        Input.getInput1();
+        Input.getInput3();
+        Input.getOperation();
         Input.invalidInput1();
         Calculator calculator = new Calculator();
-        calculator.getNumber1();
-        calculator.getNumber2();
+        Calculator.getNumber1();
+        Calculator.getNumber2();
         calculator.isInRange();
-        calculator.calculate();
-        Converter converter = new Converter();
-        if ( Input.isRoman1 && Input.isRoman2 ) {
-            System.out.println(converter.arabicToRoman(calculator.result));
-        } else {
-            if ( Input.isArabic1 && Input.isArabic2 ) {
-                System.out.println(calculator.result);
-            }
-        }
+        Calculator.calculate();
     }
 }

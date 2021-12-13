@@ -6,32 +6,28 @@ public class Calculator {
 
     public static int number1;
     public static int number2;
-    public int result;
-    public static boolean isArabic1, isArabic2, isRoman2, isRoman1;
+    public static int result;
 
-    public static Integer getNumber1() {
+    public static void getNumber1() {
 
         if ( Input.isArabic1() ) {
-            number1 = Integer.getInteger(Input.getInput1);
+            number1 = Integer.parseInt(Input.getInput1());
         } else {
             if ( Input.isRoman1() ) {
-                number1 = Integer.getInteger(valueOf(Converter.romanToArabic(Input.getInput1())));
+                number1 = Integer.parseInt(valueOf(Converter.romanToArabic(Input.getInput1())));
             }
         }
-        return number1;
     }
 
-    public static int getNumber2() {
+    public static void getNumber2() {
 
         if ( Input.isArabic2() ) {
-            number2 = Integer.getInteger(Input.getInput3);
+            number2 = Integer.parseInt(Input.getInput3());
         } else {
             if ( Input.isRoman2() ) {
-                number2 = Integer.getInteger
-                        (valueOf(Converter.romanToArabic(Input.getInput3)));
+                number2 = Integer.parseInt(valueOf(Converter.romanToArabic(Input.getInput3())));
             }
         }
-        return number2;
     }
 
     public void isInRange() {
@@ -40,97 +36,93 @@ public class Calculator {
         }
     }
 
-    public int calculate() throws Exception {
+    public static void calculate() throws Exception {
 
-        try {
-            switch (Input.getOperation) {
+        switch (Input.getOperation()) {
 
-                case "+": {
-                    if ( Input.isRoman1 && Input.isRoman2 ) {
+            case "+": {
+                if ( Input.isRoman1() && Input.isRoman2() ) {
+                    result = number1 + number2;
+                    System.out.println(Converter.arabicToRoman(result));
+                } else {
+                    if ( Input.isArabic1() && Input.isArabic2() ) {
                         result = number1 + number2;
-                        System.out.println(Converter.arabicToRoman(result));
+                        System.out.println(result);
                     } else {
-                        if ( Input.isArabic1 && Input.isArabic2 ) {
-                            result = number1 + number2;
-                            System.out.println(result);
-                        } else {
-                            if ( (Input.isArabic1 && Input.isRoman1) || (Input.isRoman1 && Input.isArabic2) ) {
-                                throw new Exception("Invalid input. Both numbers must belong the same count system");
-                            }
+                        if ( !(Input.isArabic1() && Input.isRoman1()) || !(Input.isRoman1() && Input.isArabic2()) ) {
+                            throw new Exception("Invalid input. Both numbers must belong the same count system");
                         }
                     }
-                }
-                break;
-
-                case "-": {
-                    if ( Input.isRoman1 && Input.isRoman2 ) {
-                        if ( number1 < number2 ) {
-                            throw new Exception("There are no negative numbers in roman numerals");
-                        } else {
-                            if ( number1 == number2 ) {
-                                throw new Exception("There is no null in roman numerals");
-                            }
-                        }
-                        result  = number1 - number2;
-                        System.out.println(Converter.arabicToRoman(result));
-                    } else {
-                        if ( Input.isArabic1 && Input.isArabic2 ) {
-                            result = number1 - number2;
-                            System.out.println(result);
-                        } else {
-                            if ( (Input.isArabic1 && Input.isRoman1) || (Input.isRoman1 && Input.isArabic2) ) {
-                                throw new Exception("Invalid input. Both numbers must belong the same count system");
-                            }
-                        }
-                    }
-                }
-                break;
-
-                case "*": {
-                    if ( Input.isRoman1 && Input.isRoman2 ) {
-                        result = number1 * number2;
-                        System.out.println(Converter.arabicToRoman(result));
-                    } else {
-                        if ( Input.isArabic1 && Input.isArabic2 ) {
-                            result = number1 * number2;
-                            System.out.println(result);
-                        } else {
-                            if ( (Input.isArabic1 && Input.isRoman1) || (Input.isRoman1 && Input.isArabic2) ) {
-                                throw new Exception("Invalid input. Both numbers must belong the same count system");
-                            }
-                        }
-                    }
-                }
-                break;
-
-                case "/": {
-                    if ( Input.isRoman1 && Input.isRoman2 ) {
-                        if ( number1 < number2 ) {
-                            throw new Exception("There is no null in roman numerals");
-                        } else {
-                            result = number1 / number2;
-                            System.out.println(Converter.arabicToRoman(result));
-                        }
-                    } else {
-                        if ( Input.isArabic1 && Input.isArabic2 ) {
-                            result = number1 * number2;
-                            System.out.println(result);
-                        } else {
-                            if ( (Input.isArabic1 && Input.isRoman1) || (Input.isRoman1 && Input.isArabic2) ) {
-                                throw new Exception("Invalid input. Both numbers must belong the same count system");
-                            }
-                        }
-                    }
-                }
-                break;
-
-                default: {
-                    throw new Exception("Invalid input.");
                 }
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e);
+
+            break;
+
+            case "-": {
+                if ( Input.isRoman1() && Input.isRoman2() ) {
+                    if ( number1 < number2 ) {
+                        throw new Exception("There are no negative numbers in roman numerals");
+                    } else {
+                        if ( number1 == number2 ) {
+                            throw new Exception("There is no null in roman numerals");
+                        }
+                    }
+                    result = number1 - number2;
+                    System.out.println(Converter.arabicToRoman(result));
+                } else {
+                    if ( Input.isArabic1() && Input.isArabic2() ) {
+                        result = number1 - number2;
+                        System.out.println(result);
+                    } else {
+                        if ( (Input.isArabic1() && Input.isRoman1()) || (Input.isRoman1() && Input.isArabic2()) ) {
+                            throw new Exception("Invalid input. Both numbers must belong the same count system");
+                        }
+                    }
+                }
+            }
+            break;
+
+            case "*": {
+                if ( Input.isRoman1() && Input.isRoman2() ) {
+                    result = number1 * number2;
+                    System.out.println(Converter.arabicToRoman(result));
+                } else {
+                    if ( Input.isArabic1() && Input.isArabic2() ) {
+                        result = number1 * number2;
+                        System.out.println(result);
+                    } else {
+                        if ( (Input.isArabic1() && Input.isRoman1()) || (Input.isRoman1() && Input.isArabic2()) ) {
+                            throw new Exception("Invalid input. Both numbers must belong the same count system");
+                        }
+                    }
+                }
+            }
+            break;
+
+            case "/": {
+                if ( Input.isRoman1() && Input.isRoman2() ) {
+                    if ( number1 < number2 ) {
+                        throw new Exception("There is no null in roman numerals");
+                    } else {
+                        result = number1 / number2;
+                        System.out.println(Converter.arabicToRoman(result));
+                    }
+                } else {
+                    if ( Input.isArabic1() && Input.isArabic2() ) {
+                        result = number1 * number2;
+                        System.out.println(result);
+                    } else {
+                        if ( (Input.isArabic1() && Input.isRoman1()) || (Input.isRoman1() && Input.isArabic2()) ) {
+                            throw new Exception("Invalid input. Both numbers must belong the same count system");
+                        }
+                    }
+                }
+            }
+            break;
+
+            default: {
+                throw new Exception("Invalid input.");
+            }
         }
-        return result;
     }
 }

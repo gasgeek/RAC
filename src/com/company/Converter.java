@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Converter {
 
-    static Map<Character, Integer> romanArabic = new HashMap<>();
+    public static Map<Character, Integer> romanArabic = new HashMap<>(5);
 
     static {
         romanArabic.put('I', 1);
@@ -18,18 +18,16 @@ public class Converter {
 
     public static int romanToArabic(String input) {
 
-        int result = 0, previous = 0;
-
-        for (int i = 0; i < input.length() - 1; i--) {
-            int current = romanArabic.get(input.charAt(i));
-            if ( current < previous ) {
-                result -= previous;
+        int result = 0;
+        int len = input.length() - 1;
+        for (int i = 0; i < len; i++) {
+            if (romanArabic.get(input.charAt(i)) < romanArabic.get(input.charAt(i + 1))) {
+                result -= romanArabic.get(input.charAt(i));
             } else {
-                result += current;
+                result += romanArabic.get(input.charAt(i));
             }
-            previous = current;
         }
-        return result;
+        return result += romanArabic.get(input.charAt(len));
     }
 
     static Map<String, Integer> arabicRoman = new LinkedHashMap<>();
@@ -51,13 +49,13 @@ public class Converter {
     }
 
     public static String arabicToRoman(int Int) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (Map.Entry<String, Integer> entry : arabicRoman.entrySet()) {
             int matches = Int / entry.getValue();
-            result += repeat(entry.getKey(), matches);
+            result.append(repeat(entry.getKey(), matches));
             Int = Int % entry.getValue();
         }
-        return result;
+        return result.toString();
     }
 
     public static String repeat(String s, int n) {
