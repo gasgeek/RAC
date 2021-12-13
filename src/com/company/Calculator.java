@@ -31,7 +31,7 @@ public class Calculator {
     }
 
     public void isInRange() {
-        if ( number1 > 11 || number2 > 11 ) {
+        if ( number1 > 10 || number2 > 10 ) {
             throw new IllegalArgumentException("Integer's allowed range is from 1 to 10 inclusive");
         }
     }

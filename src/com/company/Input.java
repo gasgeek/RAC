@@ -26,33 +26,17 @@ public class Input {
 
     public static void invalidInput1() throws Exception {
 
-        if ( Input.isArabic2() && Integer.parseInt(Input.getInput3()) > 10 ) {
-            throw new Exception("Input number is out of range");
+        if ( ((Input.getInput1().contains("0")) && Input.getInput1().length() > 2) ) {
+            throw new Exception("Only positive integers are allowed");
         } else {
-            if ( Input.isRoman2() && Converter.romanToArabic(Input.getInput3()) > 10 ) {
-                throw new Exception("Input number is out of range");
+            if ( ((Input.getInput3().contains("0")) && Input.getInput3().length() > 2) ) {
+                throw new Exception("Only positive integers are allowed");
             } else {
-                if ( Input.isArabic1() && Integer.parseInt(Input.getInput1()) > 10 ) {
-                    throw new Exception("Input number is out of range");
+                if ( (Input.getInput1().contains("-")) || (Input.getInput3().contains("-")) ) {
+                    throw new Exception("Only positive integers are allowed");
                 } else {
-                    if ( Input.isRoman1() && Converter.romanToArabic(Input.getInput1()) > 10 ) {
-                        throw new Exception("Input number is out of range");
-                    } else {
-                        if ( ((Input.getInput1().contains("0")) && Input.getInput1().length() > 2) ) {
-                            throw new Exception("Only positive integers are allowed");
-                        } else {
-                            if ( ((Input.getInput3().contains("0")) && Input.getInput3().length() > 2) ) {
-                                throw new Exception("Only positive integers are allowed");
-                            } else {
-                                if ( (Input.getInput1().contains("-")) || (Input.getInput3().contains("-")) ) {
-                                    throw new Exception("Only positive integers are allowed");
-                                } else {
-                                    if ( (Input.isArabic1() && Input.getInput1().length() > 2) || (Input.isRoman2() && Input.getInput3().length() > 4) ) {
-                                        throw new StringIndexOutOfBoundsException("Too long number");
-                                    }
-                                }
-                            }
-                        }
+                    if ( (Input.isArabic1() && Input.getInput1().length() > 2) || (Input.isRoman2() && Input.getInput3().length() > 4) ) {
+                        throw new StringIndexOutOfBoundsException("Too long number");
                     }
                 }
             }
