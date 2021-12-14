@@ -109,7 +109,7 @@ public class Calculator {
                     }
                 } else {
                     if ( Input.isArabic1() && Input.isArabic2() ) {
-                        result = number1 * number2;
+                        result = number1 / number2;
                         System.out.println(result);
                     } else {
                         if ( (Input.isArabic1() && Input.isRoman1()) || (Input.isRoman1() && Input.isArabic2()) ) {
