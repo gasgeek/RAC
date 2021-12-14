@@ -1,7 +1,6 @@
 package com.company;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Input {
@@ -49,7 +48,7 @@ public class Input {
         System.out.println("Введите число1, требуемую арифметическую операцию и число2, разделяя их пробелами.");
 
         String[] data;
-        try {
+
             String inputString = BufferedInputData.readLine().toUpperCase();
             /* *The minimum number of character is  : 1_+_1 = 5
              *The maximum number of character is: VIII_+_VIII = 11   */
@@ -76,11 +75,7 @@ public class Input {
             input1 = data[0];
             operation = data[1];
             input3 = data[2];
-        } catch (
-                IOException a) {
-            a.printStackTrace();
         }
-    }
 
     public static String getInput1() {
         return input1;
